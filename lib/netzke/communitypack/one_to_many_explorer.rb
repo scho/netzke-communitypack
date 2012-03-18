@@ -20,13 +20,13 @@ module Netzke
       )
 
       def configuration
-        super.tap do |c|
+        super
 
           # merge default container and collection config with the one provided by the user
-          c[:container_config] = {
+          config.container_config = {
             :region => :west,
             :class_name => "Netzke::Basepack::GridPanel"
-          }.merge(c[:container_config] || {})
+          }.merge(config.container_config || {})
 
           c[:collection_config] = {
             :class_name => "Netzke::Basepack::GridPanel"
