@@ -23,4 +23,5 @@ test/communitypack_test_app/tmp
 
 # Ignore Ext JS
 test/communitypack_test_app/public/extjs
+test/communitypack_test_app/public/ext*
 test/communitypack_test_app/public/images/icons
