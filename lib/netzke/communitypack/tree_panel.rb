@@ -1,17 +1,17 @@
 # Ext.tree.TreePanel-based component
 #
 # TODO: Add documentation for usage
-class Netzke::Communitypack::TreePanel < Netzke::Base
+class Netzke::Communitypack::TreePanel < Netzke::Basepack::Grid
 
-  # Include data accessor module
-  include ::Netzke::Basepack::DataAccessor
-  # Include columns module
-  include ::Netzke::Basepack::Columns
 
   js_configure do |c|
-    c.extend = "Ext.tree.TreePanel"
     c.mixin :tree_panel
     c.require :paging_tree_store
+  end
+
+  def js_configure(c)
+    super
+    c.xtype = "Ext.grid.Panel"
   end
 
   # Configure dynamic JS properties for instantiation
