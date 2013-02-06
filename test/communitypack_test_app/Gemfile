@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-RAILS_VERSION = '3.2.8'
+RAILS_VERSION = '3.2.11'
 DM_VERSION    = '1.2.0'
 
 gem 'rails',                RAILS_VERSION
