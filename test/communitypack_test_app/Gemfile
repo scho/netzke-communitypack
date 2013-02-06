@@ -4,7 +4,7 @@ RAILS_VERSION = '3.2.8'
 DM_VERSION    = '1.2.0'
 
 gem 'rails',                RAILS_VERSION
-gem 'mysql2'
+gem 'sqlite3'
 
 case (ENV['ORM'] || '').downcase
 when 'dm'
@@ -15,7 +15,7 @@ when 'dm'
   gem 'dm-timestamps',      DM_VERSION # needed for created_at and updated_at
   gem 'dm-aggregates',      DM_VERSION # needed for efficient count queries, else * will be selected and counted afterwards
 when 'sq'
-  gem 'sequel'  
+  gem 'sequel'
 end
 
 # Get the latest sources from github
