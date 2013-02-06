@@ -1,5 +1,5 @@
 class AuthorTreePanel < Netzke::Communitypack::TreePanel
-  
+
   def configure(c)
     c.model = "Author"
     c.columns = [{:name => 'name', :getter => lambda{|r| title(r)}, :width => 300}, :first_name, :last_name]
@@ -13,7 +13,7 @@ class AuthorTreePanel < Netzke::Communitypack::TreePanel
   # @param [Hash] params
   # @return [Array] array of records
   def get_children(params)
-    if params[:id].nil? || params[:id] == 'root' 
+    if params[:id].nil? || params[:id] == 'root'
       super # Let the data_class handle the root collection
     else params[:id] =~ /Author-(\d+)/
       Book.where(:author_id => $1)

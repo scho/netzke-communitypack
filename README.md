@@ -22,7 +22,7 @@ The following components are included (the ones marked FIXME! are probably not w
 * [Workspace](http://rdoc.info/github/netzke/netzke-communitypack/Netzke/Communitypack/Workspace) - a TabPanel-based component that allows dynamically load arbitrary Netzke components from server; for a demo see http://yanit.heroku.com
 * [ModelExplorer](http://rdoc.info/github/netzke/netzke-communitypack/Netzke/Communitypack/ModelExplorer) - a grid and a form layed-out next to each other, bound to an ActiveRecord model; for a demo see http://yanit.heroku.com
 * [OneToManyExplorer](http://rdoc.info/github/netzke/netzke-communitypack/Netzke/Communitypack/OneToManyExplorer) - 2 grids for editing ActiveRecord models that are connected with one-to-many relationship; for a demo see http://yanit.heroku.com
-* [TreePanel](http://rdoc.info/github/netzke/netzke-communitypack/Netzke/Communitypack/TreePanel) (FIXME!) - a grid with configurable live search
+* [TreePanel](http://rdoc.info/github/netzke/netzke-communitypack/Netzke/Communitypack/TreePanel) - a grid based on Ext.tree.Panel, that allows to display tree-structured data
 
 ## Functionality
 

@@ -15,6 +15,7 @@ describe NodeTreePanelWithEagerLoading, :type => :request, :js => true do
 
   it "should list all root nodes" do
     visit '/components/NodeTreePanelWithEagerLoading'
+    sleep(0.5)
     grid_count.should == 2
   end
 

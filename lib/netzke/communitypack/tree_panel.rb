@@ -8,18 +8,6 @@ class Netzke::Communitypack::TreePanel < Netzke::Base
   # Include columns module
   include ::Netzke::Basepack::Columns
 
-  extend ActiveSupport::Memoizable
-
-  self.default_instance_config = {
-    :indicate_leafs => true,
-    :auto_scroll => false,
-    :root_visible => false,
-    :load_inline_data => true,
-    :enable_pagination => true,
-    :rows_per_page => 30,
-    :treecolumn => 'tree' # The default name of the column, that will be the treecolumn
-  }
-
   js_configure do |c|
     c.extend = "Ext.tree.TreePanel"
     c.mixin :tree_panel
@@ -35,6 +23,13 @@ class Netzke::Communitypack::TreePanel < Netzke::Base
   end
 
   def configure(c) #:nodoc:
+    c.indicate_leafs = true if c.indicate_leafs.nil?
+    c.root_visible = false if c.root_visible.nil?
+    c.load_inline_data = true if c.load_inline_data.nil?
+    c.enable_pagination = true if c.enable_pagination.nil?
+    c.rows_per_page = 30 if c.rows_per_page.nil?
+    c.treecolumn = 'tree' if c.treecolumn.nil?
+
     super
     c.title = c.title || self.class.js_config.properties[:title] || data_class.name.pluralize
     c.columns = final_columns(with_meta: true)
@@ -51,11 +46,9 @@ class Netzke::Communitypack::TreePanel < Netzke::Base
   end
 
   # Sets the xtype to 'treecolumn' for the column with name equal to the :treecolumn value of the config
-  def set_default_xtype(c)
+  def set_treecolumn_xtype(c)
     if c[:name] == config[:treecolumn].to_s
       c[:xtype] = 'treecolumn'
-    else
-      super
     end
   end
 
@@ -71,6 +64,7 @@ class Netzke::Communitypack::TreePanel < Netzke::Base
   def augment_column_config(c)
     super
     set_default_data_index(c)
+    set_treecolumn_xtype(c)
   end
 
   # @!method get_data_endpoint
@@ -114,7 +108,7 @@ class Netzke::Communitypack::TreePanel < Netzke::Base
   # @return [Array] the serialized data
   def serialize_data(records)
     records.map { |r|
-      r.netzke_hash(final_columns(:with_meta => true)).tap { |h|
+      data_adapter.record_to_hash(r, final_columns(:with_meta => true)).tap { |h|
 
         config[:extra_fields].each do |f|
           name = f[:name].underscore.to_sym
